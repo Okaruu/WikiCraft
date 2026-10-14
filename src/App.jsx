@@ -1,13 +1,7 @@
-import { Text } from './components/atoms/Text';
+import Home from "./pages/Home";
 
 function App() {
-
-  return (
-    <>
-      <Text variant="h1">holanda</Text>
-      <Text variant="h2">que talca</Text>
-    </>
-  )
+  return <Home />;
 }
 
-export default App
+export default App;
