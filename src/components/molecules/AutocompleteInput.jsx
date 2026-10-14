@@ -25,7 +25,7 @@ export default function AutocompleteInput({ value, onChange, onPick }){
         <div className="autocomplete-wrapper">
             <Input
                 id="text-input" className="structure-input" placeholder="Ej: Aldea"
-                maxLenght={30} autocomplete="off" value={value}
+                maxLength={30} autoComplete="off" value={value}
                 onChange={(e) => { onChange(e.target.value); setOpen(true); setActive(-1); }}
                 onKeyDown={onKeyDown} onBlur={() => setOpen(false)}
             />

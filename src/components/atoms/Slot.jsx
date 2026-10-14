@@ -5,7 +5,7 @@ export default function Slot ({ item, onSelect }){
                 <img
                     className="item-icon"
                     src={item.imagen}
-                    alt={item.imagen}
+                    alt={item.nombre}
                     title={item.nombre}
                     onClick={() => onSelect(item)}
                 />

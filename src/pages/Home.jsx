@@ -6,11 +6,11 @@ import { useBackgroundMusic } from "../hooks/useBackgroundMusic";
 import Mainlayout from "../components/templates/MainLayout";
 import { Text } from "../components/atoms/Text";
 import StructureSearch from "../components/organisms/StructureSearch";
-import worldSelectors from "../components/organisms/WorldSelectors";
+import WorldSelectors from "../components/organisms/WorldSelectors";
 import ChestInventory from "../components/organisms/ChestInventory";
 import ItemPanel from "../components/organisms/ItemPanel";
 
-const formatear = (v) => v.replaceAll("_", " ").replace(/^./, (c) => c.toUppeCase());
+const formatear = (v) => v.replaceAll("_", " ").replace(/^./, (c) => c.toUpperCase());
 
 export default function Home(){
     const [mundo, setMundo] = useState("");
@@ -36,7 +36,7 @@ export default function Home(){
     );
 
     const elegirMundo = (m) => { setMundo(m); setZona(""); setItemSeleccionado(null); };
-    const elegirZona = (z) => { setMundo(z); setItemSeleccionado(null); };
+    const elegirZona = (z) => { setZona(z); setItemSeleccionado(null); };
     const buscarZona = (z) => { setMundo(encontrarMundoDeZona(z) ?? ""); elegirZona(z); };
 
     return (
@@ -50,7 +50,7 @@ export default function Home(){
             <WorldSelectors mundo={mundo} zona={zona} onMundo={elegirMundo} onZona={elegirZona}/>
             <div className="chest-and-panel">
                 <ChestInventory items={itemsDelCofre} onSelectItem={setItemSeleccionado} onFirstOpen={iniciarMusica} />
-                <ItemPanel key={itemSeleccioando?.valor} item={itemSeleccionado} onClose={() => setItemSeleccionado(null)} />
+                <ItemPanel key={itemSeleccionado?.valor} item={itemSeleccionado} onClose={() => setItemSeleccionado(null)} />
             </div>
         </Mainlayout>
     );
