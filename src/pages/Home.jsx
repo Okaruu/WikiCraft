@@ -17,7 +17,7 @@ export default function Home(){
     const [zona, setZona] = useState("");
     const [itemSeleccionado, setItemSeleccionado] = useState(null);
     const iniciarMusica = useBackgroundMusic("/audios/C418 - Sweden.mp3");
-    const [saltos, setSalto] = useState(0);
+    const [saltos, setSaltos] = useState(0);
 
     useEffect(() =>{
         document.body.classList.remove("overworld", "nether", "end");
