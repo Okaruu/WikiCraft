@@ -19,7 +19,7 @@ export default function ChestInventory({ items, onSelectItem, onFirstOpen }){
             {isOpen && (
                 <div className="inventory">
                     <div className="inventory-grid">
-                        {Array.from({ lenght: TOTAL_SLOTS}, (_, i) => (
+                        {Array.from({ length: TOTAL_SLOTS}, (_, i) => (
                             <Slot key={i} item={items[i]} onSelect={onSelectItem}/>
                         ))}
                     </div>

@@ -2,11 +2,21 @@ import { useEffect, useMemo, useState } from "react";
 import { items } from "../data/items";
 import { itemsPorEstructura } from "../data/itemsPorEstructura";
 import { encontrarMundoDeZona } from "../utils/encontrarMundoDeZona"
+import { useBackgroundMusic } from "../hooks/useBackgroundMusic";
+import Mainlayout from "../components/templates/MainLayout";
+import { Text } from "../components/atoms/Text";
+import StructureSearch from "../components/organisms/StructureSearch";
+import worldSelectors from "../components/organisms/WorldSelectors";
+import ChestInventory from "../components/organisms/ChestInventory";
+import ItemPanel from "../components/organisms/ItemPanel";
+
+const formatear = (v) => v.replaceAll("_", " ").replace(/^./, (c) => c.toUppeCase());
 
 export default function Home(){
     const [mundo, setMundo] = useState("");
     const [zona, setZona] = useState("");
     const [itemSeleccionado, setItemSeleccionado] = useState(null);
+    const iniciarMusica = useBackgroundMusic("/audios/C418 - Sweden.mp3");
 
     useEffect(() =>{
         document.body.classList.remove("overworld", "nether", "end");
@@ -15,15 +25,33 @@ export default function Home(){
 
     const itemsDelCofre = useMemo(
         ()=>
-        (itemsPorEstructura[zona] ?? [])
-        .map((e) => {
-            const info = items.find((i) => i.valor === e.valor);
-            return info ? { ...info, probabilidad: e.probabilidad } : null;
-        })
-        .filter(Boolean),
+        (itemsPorEstructura[zona] ?? []).map((e) => {
+            const info = items.find((i) => i.valor === e.valor) ?? {
+                valor : e.valor, nombre: formatear(e.valor),
+                imagen: "/imagenes/placeholder.webp", informacion: "", atributos: "",
+            };
+            return { ...info, probabilidad: e.probabilidad };
+        }),
         [zona]
     );
 
     const elegirMundo = (m) => { setMundo(m); setZona(""); setItemSeleccionado(null); };
-    const elegirZona = (z) => { setMundo(encontrarMundoDeZona(z) ?? ""); setZona(z); setItemSeleccionado(null); };
+    const elegirZona = (z) => { setMundo(z); setItemSeleccionado(null); };
+    const buscarZona = (z) => { setMundo(encontrarMundoDeZona(z) ?? ""); elegirZona(z); };
+
+    return (
+        <Mainlayout>
+            <Text variant="h2">Resumen de la página</Text>
+            <Text>
+                Esta página esta centrada en contener la mayoría de información acerca de la probabilidad de aparición de items
+                dentro de un cofre dependiendo la estructura en la que se encuentren, mostrando su información y sus atributos.
+            </Text>
+            <StructureSearch onSelect={buscarZona} />
+            <WorldSelectors mundo={mundo} zona={zona} onMundo={elegirMundo} onZona={elegirZona}/>
+            <div className="chest-and-panel">
+                <ChestInventory items={itemsDelCofre} onSelectItem={setItemSeleccionado} onFirstOpen={iniciarMusica} />
+                <ItemPanel key={itemSeleccioando?.valor} item={itemSeleccionado} onClose={() => setItemSeleccionado(null)} />
+            </div>
+        </Mainlayout>
+    );
 }
