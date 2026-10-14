@@ -17,6 +17,7 @@ export default function Home(){
     const [zona, setZona] = useState("");
     const [itemSeleccionado, setItemSeleccionado] = useState(null);
     const iniciarMusica = useBackgroundMusic("/audios/C418 - Sweden.mp3");
+    const [saltos, setSalto] = useState(0);
 
     useEffect(() =>{
         document.body.classList.remove("overworld", "nether", "end");
@@ -37,7 +38,11 @@ export default function Home(){
 
     const elegirMundo = (m) => { setMundo(m); setZona(""); setItemSeleccionado(null); };
     const elegirZona = (z) => { setZona(z); setItemSeleccionado(null); };
-    const buscarZona = (z) => { setMundo(encontrarMundoDeZona(z) ?? ""); elegirZona(z); };
+    const buscarZona = (z) => {
+        if(z !== zona) setSaltos((n) => n + 1);
+        setMundo(encontrarMundoDeZona(z) ?? "");
+        elegirZona(z);
+    };
 
     return (
         <Mainlayout>
@@ -47,7 +52,7 @@ export default function Home(){
                 dentro de un cofre dependiendo la estructura en la que se encuentren, mostrando su información y sus atributos.
             </Text>
             <StructureSearch onSelect={buscarZona} />
-            <WorldSelectors mundo={mundo} zona={zona} onMundo={elegirMundo} onZona={elegirZona}/>
+            <WorldSelectors mundo={mundo} zona={zona} onMundo={elegirMundo} onZona={elegirZona} animKey={saltos}/>
             <div className="chest-and-panel">
                 <ChestInventory items={itemsDelCofre} onSelectItem={setItemSeleccionado} onFirstOpen={iniciarMusica} />
                 <ItemPanel key={itemSeleccionado?.valor} item={itemSeleccionado} onClose={() => setItemSeleccionado(null)} />
