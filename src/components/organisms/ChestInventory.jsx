@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Slot from "../atoms/Slot";
 
-const Total_Slots = 27;
+const TOTAL_SLOTS = 27;
 
 export default function ChestInventory({ items, onSelectItem, onFirstOpen }){
     const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function ChestInventory({ items, onSelectItem, onFirstOpen }){
             {isOpen && (
                 <div className="inventory">
                     <div className="inventory-grid">
-                        {Array.from({ lenght: Total_Slots}, (_, i) => (
+                        {Array.from({ lenght: TOTAL_SLOTS}, (_, i) => (
                             <Slot key={i} item={items[i]} onSelect={onSelectItem}/>
                         ))}
                     </div>

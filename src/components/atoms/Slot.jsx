@@ -1,4 +1,4 @@
-export default function Slot ({ itemm, onSelect }){
+export default function Slot ({ item, onSelect }){
     return (
         <div className="slot">
             {item && (

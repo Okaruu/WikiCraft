@@ -20,10 +20,10 @@ export default function Home(){
             const info = items.find((i) => i.valor === e.valor);
             return info ? { ...info, probabilidad: e.probabilidad } : null;
         })
-        .filter(boolean),
+        .filter(Boolean),
         [zona]
     );
 
-    const elegirMundo = (m) => { setMundo(m); setZona("")};
+    const elegirMundo = (m) => { setMundo(m); setZona(""); setItemSeleccionado(null); };
     const elegirZona = (z) => { setMundo(encontrarMundoDeZona(z) ?? ""); setZona(z); setItemSeleccionado(null); };
 }
