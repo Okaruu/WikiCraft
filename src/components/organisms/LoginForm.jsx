@@ -3,7 +3,11 @@ import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
 import { Text } from "../atoms/Text";
 import { validateEmail } from "../../utils/emailValidation";
-import { ADMIN_DOMAIN, validateAdminEmail, isValidAdminCode } from "../../utils/adminAccess";
+import {
+    ADMIN_DOMAIN,
+    validateAdminEmail,
+    isValidAdminCode,
+} from "../../utils/adminAccess";
 
 function LoginForm({ onSubmit }) {
     const [email, setEmail] = useState("");

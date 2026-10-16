@@ -1,6 +1,7 @@
 import { validateEmail } from "./emailValidation";
 
 export const ADMIN_DOMAIN = "@wikicraft.wk.com";
+
 export const ADMIN_CODE = "WIKI-2026";
 
 export function isAdminEmail(email) {
