@@ -31,7 +31,7 @@ export const items = [
         informacion: "",
         atributos: ""
     },
-    { valor: "botas_de_hierro", nombre: "Botas de Hierro", imagen: "//imagenes/botas_de_hierro.webp",
+    { valor: "botas_de_hierro", nombre: "Botas de Hierro", imagen: "/imagenes/botas_de_hierro.webp",
         informacion: "",
         atributos: ""
     },
