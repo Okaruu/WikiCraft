@@ -94,3 +94,19 @@
 .login-form button[type="submit"]:hover {
     background: #9a9a9a;
 }
+
+.login-back{
+    position: absolute;
+    top: 0.6rem;
+    left:0.8rem;
+    background: none;
+    border: none;
+    color: #d8d8d8;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.login-back:hover{
+    color: #ffffff;
+}

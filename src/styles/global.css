@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-
-
 html, body{
     min-height: 100vh;
     margin: 0 auto;
@@ -27,11 +25,20 @@ header{
 .header-login {
     color: white;
     text-decoration: none;
-    padding: 0.5rem 1.5rem;
+    padding: 0.25rem 0.9rem;
+    font-size: 0.75rem;
+    font-family: inherit;
+    cursor: pointer;
     background: #7d7d7d;
-    border: 3px solid #6b5a1e;
+    border: 2px solid #6b5a1e;
     border-radius: 999px;
     text-transform: uppercase;
+}
+
+.header-nav{
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .header-login:hover {
@@ -595,5 +602,3 @@ footer{
     padding: 10px 0;
     text-align: center;
 }
-
-

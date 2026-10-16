@@ -1,6 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from './context/AuthProvider.jsx';
+import { FavoritesProvider } from './context/FavoritesProvider.jsx';
+import './styles/favoritos.css';
 import App from './App.jsx'
 import "bulma/css/bulma.min.css"
 import './styles/global.css'
@@ -9,7 +12,11 @@ import './styles/login.css'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <FavoritesProvider>
+          < App />
+        </FavoritesProvider>
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>
 )

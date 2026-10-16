@@ -9,7 +9,7 @@ import {
     isValidAdminCode,
 } from "../../utils/adminAccess";
 
-function LoginForm({ onSubmit }) {
+function LoginForm({ onSubmit, onBack }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [code, setCode] = useState("");
@@ -36,6 +36,11 @@ function LoginForm({ onSubmit }) {
 
     return (
         <form className="login-form" onSubmit={handleSubmit} noValidate>
+            {onBack && (
+                <button type="button" className="login-back" onClick={onBack} aria-label="Volver">
+                    ←
+                </button>
+            )}
             <h2>{isAdmin ? "Acceso administrador" : "Iniciar sesión"}</h2>
 
             <FormField
