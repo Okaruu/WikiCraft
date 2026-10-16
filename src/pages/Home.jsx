@@ -19,9 +19,10 @@ export default function Home(){
     const iniciarMusica = useBackgroundMusic("/audios/C418 - Sweden.mp3");
     const [saltos, setSaltos] = useState(0);
 
-    useEffect(() =>{
-        document.body.classList.remove("overworld", "nether", "end");
-        if (mundo) document.body.classList.add(mundo);
+    useEffect(() => {
+        if (!mundo) return;
+        document.body.classList.add(mundo);
+        return () => document.body.classList.remove(mundo);
     }, [mundo]);
 
     const itemsDelCofre = useMemo(

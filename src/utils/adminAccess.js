@@ -11,7 +11,7 @@ export function isAdminEmail(email) {
 export function validateAdminEmail(value){
     const base = validateEmail(value);
     if (base) return base;
-    if (!isAdminEmail(value)) return 'El correo debe terminar en ${ADMIN_DOMAIN}';
+    if (!isAdminEmail(value)) return `El correo debe terminar en ${ADMIN_DOMAIN}`;
     return "";
 }
 

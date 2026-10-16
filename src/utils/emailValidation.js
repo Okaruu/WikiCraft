@@ -18,7 +18,7 @@ export function validateEmail(value){
 
     const partesDominio = dominio.split(".");
     if (partesDominio.length < 2) return "El dominio debe llevar un punto (Ej: gmail.com).";
-    if (!partesDominio.every((p) => /^[A-Za-z0-0]([A-Za-z0-9]*[A-Za-z0-9])?$/.test(p)))
+    if (!partesDominio.every((p) => /^[A-Za-z0-9]([A-Za-z0-9]*[A-Za-z0-9])?$/.test(p)))
         return "El dominio del correo no es válido.";
     if (!/^[A-Za-z]{2,}$/.test(partesDominio[partesDominio.length - 1]))
         return "La terminación del dominio no es válida (Ej: .com).";

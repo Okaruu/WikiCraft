@@ -21,7 +21,7 @@ export default function ItemPanel({ item, onClose }){
         <div className="item-panel">
             <FavoriteButton
                 className="fav-btn item-panel-fav"
-                active={isLoggedIn && esFacorito(item.valor)}
+                active={isLoggedIn && esFavorito(item.valor)}
                 onClick={alternarFavorito}
             />
 

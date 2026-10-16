@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FavoritesContext } from "./favoritesContext";
 import { useAuth } from "../hooks/useAuth";
 
-const clave = (email) => 'wikicraft:favoritos:${email}'
+const clave = (email) => `wikicraft:favoritos:${email}`
 
 function leer(email){
     if(!email) return[];
