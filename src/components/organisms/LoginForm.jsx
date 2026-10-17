@@ -16,8 +16,8 @@ function LoginForm({ onSubmit, onBack }) {
     const [isAdmin, setIsAdmin] = useState(false);
     const [error, setError] = useState("");
 
-    const handleToggleAdmin = (e) => {
-        setIsAdmin(e.target.checked);
+    const handleToggleAdmin = () => {
+        setIsAdmin((a) => !a);
         setCode("");
         setError("");
     };
@@ -59,6 +59,10 @@ function LoginForm({ onSubmit, onBack }) {
                 onChange={(e) => setPassword(e.target.value)}
             />
 
+            <button type="button" className="login-admin-link" onClick={handleToggleAdmin}>
+                {isAdmin ? "Iniciar como usuario" : "Iniciar como administrador"}
+            </button>
+            
             {isAdmin && (
                 <FormField
                     id="code"
@@ -74,15 +78,6 @@ function LoginForm({ onSubmit, onBack }) {
 
             <Button type="submit">Entrar</Button>
 
-            <div className="login-admin">
-                <input
-                    id="admin"
-                    type="checkbox"
-                    checked={isAdmin}
-                    onChange={handleToggleAdmin}
-                />
-                <label htmlFor="admin">Iniciar como administrador</label>
-            </div>
         </form>
     );
 }
