@@ -7,17 +7,17 @@ import { useFavorites } from "../../hooks/useFavorites";
 import { useItemEdits } from "../../hooks/useItemEdits";
 
 export default function ItemPanel({ item, onClose }){
-    const { isLoggedIn } = useAuth();
-    const { updateItem, resetItem } = useItemedits();
+    const { isLoggedIn, isAdmin } = useAuth();
+    const { updateItem, resetItem } = useItemEdits();
     const [editando, setEditando] = useState(false);
     const [borrador, setBorrador] = useState({informacion: "", atributos: ""});
     const { esFavorito, toggleFavorito} = useFavorites();
-    const [ aviso, setAviso] = useState(false);
+    const [aviso, setAviso] = useState(false);
 
     if(!item) return null;
 
     const empezarEdicion = () => {
-        setBorrador({ informacion: item.inforamcion, atributos: item.atributos });
+        setBorrador({ informacion: item.informacion, atributos: item.atributos });
         setEditando(true);
     };
 
@@ -57,6 +57,8 @@ const guardar = () => { updateItem(item.valor, borrador); setEditando(false); };
                 <div className="item-edit">
                     <label htmlFor="edit-info">Información</label>
                     <textarea id="edit-info" rows={5} value={borrador.informacion} onChange={(e) => setBorrador((b) => ({ ...b, informacion: e.target.value}))} />
+                    <label htmlFor="edit-attr">Atributos</label>
+                    <textarea id="edit-attr" rows={5} value={borrador.atributos} onChange={(e) => setBorrador((b) => ({...b, atributos: e.target.value}))} />
                     <div className="item-edit-actions">
                         <button type="button" onClick={guardar}>Guardar</button>
                         <button type="button" onClick={() => setEditando(false)}>Cancelar</button>

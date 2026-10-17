@@ -41,8 +41,8 @@ export default function Home(){
 
     const itemSeleccionado = itemsDelCofre.find((i) => i.valor === valorSeleccionado) ?? null;
 
-    const elegirMundo = (m) => { setMundo(m); setZona(""); setItemSeleccionado(null); };
-    const elegirZona = (z) => { setZona(z); setItemSeleccionado(null); };
+    const elegirMundo = (m) => { setMundo(m); setZona(""); setValorSeleccionado(null); };
+    const elegirZona = (z) => { setZona(z); setValorSeleccionado(null); };
     const buscarZona = (z) => {
         if(z !== zona) setSaltos((n) => n + 1);
         setMundo(encontrarMundoDeZona(z) ?? "");
@@ -59,7 +59,7 @@ export default function Home(){
             <StructureSearch onSelect={buscarZona} />
             <WorldSelectors mundo={mundo} zona={zona} onMundo={elegirMundo} onZona={elegirZona} animKey={saltos}/>
             <div className="chest-and-panel">
-                <ChestInventory items={itemsDelCofre} onSelectItem={serValorSeleccionado} onFirstOpen={iniciarMusica} />
+                <ChestInventory items={itemsDelCofre} onSelectItem={(i) => setValorSeleccionado(i.valor)} onFirstOpen={iniciarMusica} />
                 <ItemPanel key={itemSeleccionado?.valor} item={itemSeleccionado} onClose={() => setValorSeleccionado(null)} />
             </div>
         </Mainlayout>
