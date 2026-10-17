@@ -59,10 +59,6 @@ function LoginForm({ onSubmit, onBack }) {
                 onChange={(e) => setPassword(e.target.value)}
             />
 
-            <button type="button" className="login-admin-link" onClick={handleToggleAdmin}>
-                {isAdmin ? "Iniciar como usuario" : "Iniciar como administrador"}
-            </button>
-            
             {isAdmin && (
                 <FormField
                     id="code"
@@ -73,6 +69,10 @@ function LoginForm({ onSubmit, onBack }) {
                     onChange={(e) => setCode(e.target.value)}
                 />
             )}
+
+            <button type="button" className="login-admin-link" onClick={handleToggleAdmin}>
+                {isAdmin ? "Iniciar como usuario" : "Iniciar como administrador"}
+            </button>
 
             {error && <Text className="login-error">{error}</Text>}
 
