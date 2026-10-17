@@ -613,7 +613,7 @@ body.end{
 }
 
 .layout{
-    min-height: 100hv;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -662,7 +662,7 @@ footer{
 
     .footer-col + .footer-col{
         border-left: none;
-        border-top: 3px solid #b8b8b8;
+        border-top: 3px solid #505050;
     }
 
     .footer-extra:empty{
