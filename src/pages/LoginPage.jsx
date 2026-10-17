@@ -9,7 +9,7 @@ function LoginPage() {
 
     const handleLogin = ({email, role}) => {
         login({ email, role })
-        navigate(role === "admin" ? "/admin" : "/");
+        navigate("/");
     };
 
     return (
