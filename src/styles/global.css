@@ -633,13 +633,8 @@ footer{
     padding: 10px 16px;
 }
 
-.fiiter-col + .footer-col{
+.footer-col + .footer-col{
     border-left: 3px solid #b8b8b8;
-}
-
-.footer-contact{
-    align-items: center;
-    text-align: center;
 }
 
 .footer-contact{

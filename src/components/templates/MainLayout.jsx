@@ -4,7 +4,7 @@ import CreeperInfo from "../organisms/CreeperInfo";
 
 export default function Mainlayout({children}){
     return(
-        <div>
+        <div className="layout">
             <Header />
             <section id="content" className="parrafos"> {children} </section>
             <CreeperInfo />
