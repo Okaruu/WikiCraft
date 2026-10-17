@@ -8,9 +8,9 @@ function LoginPage() {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    const handleLogin = ({email, role}) => {
+    const handleLogin = ({email, password, role}) => {
         if (role==="user"){
-            const error = verificarCuenta({email,password});
+            const error = verificarCuenta({email, password});
             if(error) return error;
         }
         login({ email, role })

@@ -1,7 +1,7 @@
 const KEY = "wikicraft:cuentas";
 
 function leerCuentas(){
-    try { localStorage.setItem(KEY, JSON.stringify(cuentas)); return true} catch { return false; }
+    try { return JSON.parse(localStorage.getItem(KEY)) ?? []; } catch { return []; }
 }
 
 function guardarCuentas(cuentas){

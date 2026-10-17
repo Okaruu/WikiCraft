@@ -22,7 +22,8 @@ header{
     padding: 0 1rem;
 }
 
-.header-login {
+.header-login,
+.header-register {
     color: white;
     text-decoration: none;
     padding: 0.25rem 0.9rem;
@@ -41,7 +42,8 @@ header{
     flex-wrap: wrap;
 }
 
-.header-login:hover {
+.header-login:hover,
+.header-register:hover {
     background: #9a9a9a;
 }
 

@@ -7,7 +7,7 @@ import { validateEmail } from "../../utils/emailValidation";
 import { validatePassword } from "../../utils/passwordValidation";
 import { ADMIN_DOMAIN, isAdminEmail } from "../../utils/adminAccess";
 
-function RegisterForm({onSumbit, onBack}){
+function RegisterForm({onSubmit, onBack}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");

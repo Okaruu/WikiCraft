@@ -24,7 +24,6 @@ function LoginForm({ onSubmit, onBack }) {
         e.preventDefault();
 
         const errorCorreo = isAdmin ? validateAdminEmail(email) : validateEmail(email);
-        const errorPassword = validatePassword(password);
         if (errorCorreo) { setError(errorCorreo); return; }
 
         if (isAdmin) {
@@ -33,6 +32,7 @@ function LoginForm({ onSubmit, onBack }) {
             if (!isValidAdminCode(code)) {setError("Código de acceso incorrecto"); return;}
         } else if (!password) {
             setError("Ingresa tu contraseña");
+            return;
         };
         setError("");
         const errorCuenta= onSubmit({ email: email.trim().toLowerCase(), password, role: isAdmin ? "admin" : "user"})
