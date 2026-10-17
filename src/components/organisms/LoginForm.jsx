@@ -3,11 +3,8 @@ import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
 import { Text } from "../atoms/Text";
 import { validateEmail } from "../../utils/emailValidation";
-import {
-    ADMIN_DOMAIN,
-    validateAdminEmail,
-    isValidAdminCode,
-} from "../../utils/adminAccess";
+import { ADMIN_DOMAIN, validateAdminEmail, isValidAdminCode, } from "../../utils/adminAccess";
+import { validatePassword } from "../../utils/passwordValidation";
 
 function LoginForm({ onSubmit, onBack }) {
     const [email, setEmail] = useState("");
@@ -26,9 +23,10 @@ function LoginForm({ onSubmit, onBack }) {
         e.preventDefault();
 
         const errorCorreo = isAdmin ? validateAdminEmail(email) : validateEmail(email);
+        const errorPassword = validatePassword(password);
         if (errorCorreo) { setError(errorCorreo); return; }
-        if (!password) { setError("Ingresa tu contraseña"); return; }
-        if (isAdmin && !isValidAdminCode(code)) { setError("Código de acceso incorrecto"); return; }
+        if (errorPassword) { setError(errorPassword); return; }
+        if (isAdmin && !isValidAdminCode(code)) { setError("Codigo de acceso incorrecto"); return; }
 
         setError("");
         onSubmit({ email: email.trim().toLowerCase(), password, role: isAdmin ? "admin" : "user" });
@@ -41,7 +39,8 @@ function LoginForm({ onSubmit, onBack }) {
                     ←
                 </button>
             )}
-            <h2>{isAdmin ? "Acceso administrador" : "Iniciar sesión"}</h2>
+
+            <h2>{isAdmin ? "Acceso administrador" : "Iniciar sesion"}</h2>
 
             <FormField
                 id="email"

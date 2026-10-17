@@ -3,8 +3,9 @@ import { items } from "../data/items";
 import { itemsPorEstructura } from "../data/itemsPorEstructura";
 import { encontrarMundoDeZona } from "../utils/encontrarMundoDeZona"
 import { useBackgroundMusic } from "../hooks/useBackgroundMusic";
-import Mainlayout from "../components/templates/MainLayout";
 import { Text } from "../components/atoms/Text";
+import { useItemEdits } from "../hooks/useItemEdits";
+import Mainlayout from "../components/templates/MainLayout";
 import StructureSearch from "../components/organisms/StructureSearch";
 import WorldSelectors from "../components/organisms/WorldSelectors";
 import ChestInventory from "../components/organisms/ChestInventory";
@@ -15,7 +16,8 @@ const formatear = (v) => v.replaceAll("_", " ").replace(/^./, (c) => c.toUpperCa
 export default function Home(){
     const [mundo, setMundo] = useState("");
     const [zona, setZona] = useState("");
-    const [itemSeleccionado, setItemSeleccionado] = useState(null);
+    const [valorSeleccionado, setValorSeleccionado] = useState(null);
+    const { ediciones } = useItemEdits();
     const iniciarMusica = useBackgroundMusic("/audios/C418 - Sweden.mp3");
     const [saltos, setSaltos] = useState(0);
 
@@ -27,15 +29,17 @@ export default function Home(){
 
     const itemsDelCofre = useMemo(
         ()=>
-        (itemsPorEstructura[zona] ?? []).map((e) => {
-            const info = items.find((i) => i.valor === e.valor) ?? {
-                valor : e.valor, nombre: formatear(e.valor),
-                imagen: "/imagenes/placeholder.webp", informacion: "", atributos: "",
-            };
-            return { ...info, probabilidad: e.probabilidad };
-        }),
-        [zona]
+            (itemsPorEstructura[zona] ?? []).map((e) => {
+                const base = items.find((i) => i.valor === e.valor) ?? {
+                    valor : e.valor, nombre: formatear(e.valor),
+                    imagen: "/imagenes/placeholder.webp", informacion: "", atributos: "",
+                };
+                return { ...base, ...ediciones[e.valor],probabilidad: e.probabilidad };
+            }), 
+        [zona, ediciones]
     );
+
+    const itemSeleccionado = itemsDelCofre.find((i) => i.valor === valorSeleccionado) ?? null;
 
     const elegirMundo = (m) => { setMundo(m); setZona(""); setItemSeleccionado(null); };
     const elegirZona = (z) => { setZona(z); setItemSeleccionado(null); };
@@ -55,8 +59,8 @@ export default function Home(){
             <StructureSearch onSelect={buscarZona} />
             <WorldSelectors mundo={mundo} zona={zona} onMundo={elegirMundo} onZona={elegirZona} animKey={saltos}/>
             <div className="chest-and-panel">
-                <ChestInventory items={itemsDelCofre} onSelectItem={setItemSeleccionado} onFirstOpen={iniciarMusica} />
-                <ItemPanel key={itemSeleccionado?.valor} item={itemSeleccionado} onClose={() => setItemSeleccionado(null)} />
+                <ChestInventory items={itemsDelCofre} onSelectItem={serValorSeleccionado} onFirstOpen={iniciarMusica} />
+                <ItemPanel key={itemSeleccionado?.valor} item={itemSeleccionado} onClose={() => setValorSeleccionado(null)} />
             </div>
         </Mainlayout>
     );

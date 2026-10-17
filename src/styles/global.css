@@ -596,6 +596,20 @@ body.end{
     }
 }
 
+.item-edit textarea{
+    width: 100%;
+    min-height: 6rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+.item-edit-actions{
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
 footer{
     background-color: #1a1a1a;
     color: #fff;
