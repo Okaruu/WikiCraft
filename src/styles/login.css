@@ -113,3 +113,14 @@
 .login-back:hover{
     color: #ffffff;
 }
+
+.login-alt-link {
+    align-self: center;
+    color: #b8b8b8;
+    font-size: 0.8rem;
+    text-decoration: underline;
+}
+
+.login-alt-link:hover {
+    color: #ffffff;
+}

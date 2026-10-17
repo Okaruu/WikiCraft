@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
+import { Link } from "react-router-dom"
 import { Text } from "../atoms/Text";
 import { validateEmail } from "../../utils/emailValidation";
 import { ADMIN_DOMAIN, validateAdminEmail, isValidAdminCode, } from "../../utils/adminAccess";
@@ -25,11 +26,17 @@ function LoginForm({ onSubmit, onBack }) {
         const errorCorreo = isAdmin ? validateAdminEmail(email) : validateEmail(email);
         const errorPassword = validatePassword(password);
         if (errorCorreo) { setError(errorCorreo); return; }
-        if (errorPassword) { setError(errorPassword); return; }
-        if (isAdmin && !isValidAdminCode(code)) { setError("Codigo de acceso incorrecto"); return; }
 
+        if (isAdmin) {
+            const errorPassword = validatePassword(password);
+            if( errorPassword) { setError(errorPassword); return;}
+            if (!isValidAdminCode(code)) {setError("Código de acceso incorrecto"); return;}
+        } else if (!password) {
+            setError("Ingresa tu contraseña");
+        };
         setError("");
-        onSubmit({ email: email.trim().toLowerCase(), password, role: isAdmin ? "admin" : "user" });
+        const errorCuenta= onSubmit({ email: email.trim().toLowerCase(), password, role: isAdmin ? "admin" : "user"})
+        if (errorCuenta) setError(errorCuenta);
     };
 
     return (
@@ -77,6 +84,9 @@ function LoginForm({ onSubmit, onBack }) {
 
             <Button type="submit">Entrar</Button>
 
+            {!isAdmin && (
+                <Link to="/registro" className="login-alt-link">¿No tienes cuenta? Regístrate</Link>
+            )}
         </form>
     );
 }

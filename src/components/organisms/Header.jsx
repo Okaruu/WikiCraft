@@ -15,7 +15,10 @@ export default function Header(){
                         <button type="button" className="header-login" onClick={logout}>Cerrar sesión</button>
                     </>
                 ) : (
-                    <Link to="/login" className="header-login">Inciar sesión</Link>
+                    <>
+                        <Link to="/login" className="header-login">Iniciar sesión</Link>
+                        <Link to="/registro" className="header-register">Registarse</Link>
+                    </>
                 )}
             </nav>
         </section> 
