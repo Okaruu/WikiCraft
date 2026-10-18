@@ -3,16 +3,25 @@ module.exports = function (config) {
    frameworks: ['jasmine'],
    files: [
      'src/test/setupTests.js',
-     'src/test/**/*.spec.jsx'
+     'src/test/**/*.spec.jsx',
+     { pattern: 'public/**/*', included: false, served: true, watched: false }
    ],
+   proxies: {
+     '/imagenes/': '/base/public/imagenes/',
+     '/audios/': '/base/public/audios/'
+   },
    preprocessors: {
      'src/test/setupTests.js': ['webpack'],
-     'src/**/*.spec.jsx': ['webpack']
+     'src/test/**/*.spec.jsx': ['webpack']
    },
    webpack: {
      mode: 'development',
      module: {
        rules: [
+         {
+           test: /\.m?jsx?$/,
+           resolve: { fullySpecified: false },
+         },
          {
            test: /\.jsx?$/,
            exclude: /node_modules/,
