@@ -2,10 +2,10 @@
 
 @import './base/Base.css';
 
-@import './atoms/Slot.css';
+@import './atoms/slot.css';
 
 @import './molecules/AccordionItem.css';
-@import './molecules/AutocompleteInput.css';
+@import './molecules/AutoCompleteInput.css';
 @import './molecules/FavoriteButton.css';
 @import './molecules/FormField.css';
 @import './molecules/SelectField.css';
