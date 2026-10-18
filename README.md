@@ -1,8 +1,8 @@
 # WikiCraft
 
-Proyecto para el ramo **Desarrollo Fullstack II (DSY1104)** de Duoc UC.
+Proyecto **Desarrollo Fullstack II (DSY1104)** 
 
-WikiCraft es una página sobre Minecraft donde puedes buscar una estructura del juego (una aldea, un naufragio, una fortaleza, etc.) y ver qué ítems pueden salir en sus cofres y con qué probabilidad. Al hacer click en un ítem se muestra su información y sus atributos.
+WikiCraft es una página sobre Minecraft donde puedes buscar una estructura del juego y ver qué ítems pueden salir en sus cofres y con qué probabilidad. Al hacer click en un ítem se muestra su información y sus atributos.
 
 ## Cómo correr el proyecto
 
@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-La página queda en http://localhost:5173
+La página queda en http://localhost:5173 o https://wiki-craft-ten.vercel.app/
 
 Para correr las pruebas:
 
