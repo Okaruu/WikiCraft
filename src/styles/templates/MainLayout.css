@@ -1,0 +1,16 @@
+.parrafos {
+    background-color: rgba(0, 0, 0, 0.377);
+    border-radius: 15px;
+}
+
+@media (max-width: 900px) {
+    .parrafos {
+        margin: 0 12px;
+    }
+}
+
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

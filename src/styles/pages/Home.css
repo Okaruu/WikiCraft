@@ -1,0 +1,14 @@
+.chest-and-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .chest-and-panel {
+        flex-direction: column;
+        align-items: center;
+    }
+}

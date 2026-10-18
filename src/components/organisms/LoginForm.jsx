@@ -25,7 +25,6 @@ function LoginForm({ onSubmit, onBack }) {
 
         const errorCorreo = isAdmin ? validateAdminEmail(email) : validateEmail(email);
         if (errorCorreo) { setError(errorCorreo); return; }
-
         if (isAdmin) {
             const errorPassword = validatePassword(password);
             if( errorPassword) { setError(errorPassword); return;}

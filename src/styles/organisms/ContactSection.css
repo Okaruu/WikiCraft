@@ -1,0 +1,11 @@
+.text-contact {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.contactos {
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+}

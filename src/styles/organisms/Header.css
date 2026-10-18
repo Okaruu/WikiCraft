@@ -1,0 +1,41 @@
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#header section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.header-login,
+.header-register {
+    color: white;
+    text-decoration: none;
+    padding: 0.25rem 0.9rem;
+    font-size: 0.75rem;
+    font-family: inherit;
+    cursor: pointer;
+    background: #7d7d7d;
+    border: 2px solid #6b5a1e;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+.header-nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.header-login:hover,
+.header-register:hover {
+    background: #9a9a9a;
+}

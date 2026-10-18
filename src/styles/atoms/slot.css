@@ -1,0 +1,33 @@
+.slot {
+    width: 40px;
+    height: 40px;
+    background-color: #505050;
+    border: 2px solid;
+    border-color: #373737 #ffffff55 #ffffff55 #373737;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.slot:has(.item-icon):hover {
+    background-color: #6b6b6b;
+    cursor: pointer;
+}
+
+.item-icon {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    display: block;
+    transition: transform 0.1s ease;
+}
+
+.slot:has(.item-icon):hover .item-icon {
+    transform: scale(1.1);
+}
+
+@media (max-width: 420px) {
+    .slot {
+        width: 30px;
+        height: 30px;
+    }
+}
