@@ -29,4 +29,12 @@ describe('Header (organismo)', () => {
     expect(screen.getByRole('link', { name: 'Iniciar sesión' })).toBeTruthy();
     expect(localStorage.getItem('wikicraft:sesion')).toBeNull();
   });
+
+  it('muestra el botón de música en el header, con o sin sesión', () => {
+    const { unmount } = renderConProveedores(<Header />);
+    expect(screen.getByRole('button', { name: 'Silenciar música' })).toBeTruthy();
+    unmount();
+    renderConProveedores(<Header />, { sesion: USUARIO });
+    expect(screen.getByRole('button', { name: 'Silenciar música' })).toBeTruthy();
+  });
 });

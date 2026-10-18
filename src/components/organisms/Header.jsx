@@ -1,6 +1,7 @@
 import { Text } from "../atoms/Text";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import MusicButton from "../molecules/MusicButton";
 
 export default function Header(){
     const { user, logout } = useAuth();
@@ -9,6 +10,7 @@ export default function Header(){
         <section className="container-fluid d-flex flex-wrap justify-content-center justify-content-sm-between align-items-center gap-2 py-2"> 
             <Link to="/"><Text variant="h1">WikiCraft</Text></Link>
             <nav className="header-nav d-flex flex-wrap justify-content-center gap-2">
+                <MusicButton />
                 {user ? (
                     <>
                         <Link to="/favoritos" className="header-login btn btn-sm">Favoritos</Link>

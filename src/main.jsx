@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/AuthProvider.jsx';
 import { FavoritesProvider } from './context/FavoritesProvider.jsx';
 import { ItemsProvider } from './context/ItemsProvider.jsx';
+import { MusicProvider } from './context/MusicProvider.jsx';
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/index.css'
@@ -11,13 +12,15 @@ import './styles/index.css'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <ItemsProvider>
-          <FavoritesProvider>
-            < App />
-          </FavoritesProvider>
-        </ItemsProvider>
-      </AuthProvider>
+      <MusicProvider>
+        <AuthProvider>
+          <ItemsProvider>
+            <FavoritesProvider>
+              <App />
+            </FavoritesProvider>
+          </ItemsProvider>
+        </AuthProvider>
+      </MusicProvider>
     </BrowserRouter>
   </StrictMode>
 )

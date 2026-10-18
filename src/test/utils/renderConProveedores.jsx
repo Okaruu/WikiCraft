@@ -3,6 +3,7 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '../../context/AuthProvider';
 import { ItemsProvider } from '../../context/ItemsProvider';
 import { FavoritesProvider } from '../../context/FavoritesProvider';
+import { MusicProvider } from '../../context/MusicProvider';
 
 export const USUARIO = { email: 'carlos@gmail.com', role: 'user' };
 export const ADMIN = { email: 'admin@wikicraft.wk.com', role: 'admin' };
@@ -29,11 +30,13 @@ export function renderConProveedores(ui, { sesion = null, ruta = '/', rutas = nu
 
   return render(
     <MemoryRouter initialEntries={[ruta]}>
-      <AuthProvider>
-        <ItemsProvider>
-          <FavoritesProvider>{contenido}</FavoritesProvider>
-        </ItemsProvider>
-      </AuthProvider>
+      <MusicProvider>
+        <AuthProvider>
+          <ItemsProvider>
+            <FavoritesProvider>{contenido}</FavoritesProvider>
+          </ItemsProvider>
+        </AuthProvider>
+      </MusicProvider>
     </MemoryRouter>
   );
 }

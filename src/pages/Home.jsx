@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { items } from "../data/items";
 import { itemsPorEstructura } from "../data/itemsPorEstructura";
 import { encontrarMundoDeZona } from "../utils/encontrarMundoDeZona"
-import { useBackgroundMusic } from "../hooks/useBackgroundMusic";
+import { useMusic } from "../hooks/useMusic";
 import { Text } from "../components/atoms/Text";
 import { useItemEdits } from "../hooks/useItemEdits";
 import Mainlayout from "../components/templates/MainLayout";
@@ -18,7 +18,7 @@ export default function Home(){
     const [zona, setZona] = useState("");
     const [valorSeleccionado, setValorSeleccionado] = useState(null);
     const { ediciones } = useItemEdits();
-    const iniciarMusica = useBackgroundMusic("/audios/C418 - Sweden.mp3");
+    const { iniciar: iniciarMusica } = useMusic();
     const [saltos, setSaltos] = useState(0);
 
     useEffect(() => {

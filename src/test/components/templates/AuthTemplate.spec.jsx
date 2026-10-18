@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import AuthTemplate from '../../../components/templates/AuthTemplate';
+import { MusicProvider } from '../../../context/MusicProvider';
 
 describe('AuthTemplate (template)', () => {
   it('renderiza un <main> con la clase auth-template', () => {
@@ -15,5 +16,10 @@ describe('AuthTemplate (template)', () => {
   it('el contenido queda dentro del <main>', () => {
     render(<AuthTemplate><form aria-label="formulario" /></AuthTemplate>);
     expect(screen.getByRole('main').contains(screen.getByRole('form', { name: 'formulario' }))).toBeTrue();
+  });
+
+  it('muestra el botón de música también en login y registro', () => {
+    render(<MusicProvider><AuthTemplate><p>login</p></AuthTemplate></MusicProvider>);
+    expect(screen.getByRole('button', { name: 'Silenciar música' })).toBeTruthy();
   });
 });
