@@ -5,7 +5,7 @@ import { AuthProvider } from './context/AuthProvider.jsx';
 import { FavoritesProvider } from './context/FavoritesProvider.jsx';
 import { ItemsProvider } from './context/ItemsProvider.jsx';
 import App from './App.jsx'
-import "bulma/css/bulma.min.css"
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/index.css'
 
 createRoot(document.getElementById('root')).render(

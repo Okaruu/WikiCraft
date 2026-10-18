@@ -17,4 +17,12 @@ describe('Footer (organismo)', () => {
     expect(screen.getByRole('heading', { name: 'Contacto' })).toBeTruthy();
     expect(screen.getByRole('link', { name: 'Instagram' })).toBeTruthy();
   });
+
+  it('usa columnas de Bootstrap: apiladas en móvil y en 3 columnas desde md', () => {
+    const { container } = render(<Footer />);
+    expect(container.querySelector('footer')).toHaveClass('row');
+    const columnas = container.querySelectorAll('.footer-col');
+    expect(columnas.length).toBe(3);
+    columnas.forEach((col) => expect(col).toHaveClass('col-md-4'));
+  });
 });

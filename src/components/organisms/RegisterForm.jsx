@@ -43,7 +43,7 @@ function RegisterForm({onSubmit, onBack}){
 
             {error && <Text className="login-error">{error}</Text>}
 
-            <Button type="submit">Registrarme</Button>
+            <Button type="submit" className="btn">Registrarme</Button>
 
             <Link to="/login" className="login-alt-link">¿Ya tienes cuenta? Inicia sesión</Link>
         </form>

@@ -1,5 +1,8 @@
-.accordion-item {
+.item-panel .accordion-item {
+    background: transparent;
+    border: 0;
     border-top: 2px solid #8b8b8b;
+    border-radius: 0;
 }
 
 .accordion-item:last-child {

@@ -30,4 +30,13 @@ describe('FavoritesPage', () => {
     expect(screen.queryByText('Pan')).toBeNull();
     expect(JSON.parse(localStorage.getItem(CLAVE))).toEqual([]);
   });
+
+  it('muestra los favoritos en una grilla responsiva de Bootstrap', () => {
+    localStorage.setItem(CLAVE, JSON.stringify([pan]));
+    const { container } = renderConProveedores(<FavoritesPage />, { sesion: USUARIO });
+    const grilla = container.querySelector('.fav-grid');
+    expect(grilla).toHaveClass('row');
+    expect(grilla).toHaveClass('row-cols-2');
+    expect(grilla).toHaveClass('row-cols-md-4');
+  });
 });

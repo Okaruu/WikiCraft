@@ -24,10 +24,16 @@ module.exports = function (config) {
          },
          {
            test: /\.jsx?$/,
-           exclude: /node_modules/,
+           exclude: [/node_modules/, /src[\\/]test[\\/]/],
            use: {
              loader: 'babel-loader',
+             options: { plugins: ['istanbul'] },
            },
+         },
+         {
+           test: /\.jsx?$/,
+           include: /src[\\/]test[\\/]/,
+           use: { loader: 'babel-loader' },
          },
          {
            test: /\.css$/,
@@ -41,8 +47,11 @@ module.exports = function (config) {
    },
    reporters: ['progress', 'kjhtml', 'coverage'],
    coverageReporter: {
-     type: 'html',
      dir: 'coverage/',
+     reporters: [
+       { type: 'html', subdir: 'html' },   
+       { type: 'text-summary' },           
+     ],
    },
    browsers: ['ChromeHeadless'],
    singleRun: true,

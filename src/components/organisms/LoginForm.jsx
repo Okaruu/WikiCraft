@@ -46,7 +46,7 @@ function LoginForm({ onSubmit, onBack }) {
                 </button>
             )}
 
-            <h2>{isAdmin ? "Acceso administrador" : "Iniciar sesion"}</h2>
+            <h2>{isAdmin ? "Acceso administrador" : "Iniciar sesión"}</h2>
 
             <FormField
                 id="email"
@@ -81,7 +81,7 @@ function LoginForm({ onSubmit, onBack }) {
 
             {error && <Text className="login-error">{error}</Text>}
 
-            <Button type="submit">Entrar</Button>
+            <Button type="submit" className="btn">Entrar</Button>
 
             {!isAdmin && (
                 <Link to="/registro" className="login-alt-link">¿No tienes cuenta? Regístrate</Link>

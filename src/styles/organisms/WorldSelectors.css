@@ -1,11 +1,5 @@
 .chest-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: flex-start;
-    margin: 16px;
-    gap: 20px;
-    flex-wrap: wrap;
+    margin: 0 16px 16px;
 }
 
 .world-selector {
@@ -22,6 +16,11 @@
     align-items: center;
     gap: 8px;
     margin-top: 40px;
+}
+
+.world-selector label,
+.structure-selector label {
+    color: #c6c6c6;
 }
 
 .world-select {
@@ -53,12 +52,12 @@
     border-color: #ffffff;
 }
 
-@media (max-width: 600px) {
-    .chest-row {
-        justify-content: center;
-        align-items: center;
-    }
+.world-select,
+.structure-select {
+    max-width: 100%;
+}
 
+@media (max-width: 600px) {
     .world-select,
     .structure-select {
         width: 200px;

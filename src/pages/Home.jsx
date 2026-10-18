@@ -58,9 +58,13 @@ export default function Home(){
             </Text>
             <StructureSearch onSelect={buscarZona} />
             <WorldSelectors mundo={mundo} zona={zona} onMundo={elegirMundo} onZona={elegirZona} animKey={saltos}/>
-            <div className="chest-and-panel">
-                <ChestInventory items={itemsDelCofre} onSelectItem={(i) => setValorSeleccionado(i.valor)} onFirstOpen={iniciarMusica} />
-                <ItemPanel key={itemSeleccionado?.valor} item={itemSeleccionado} onClose={() => setValorSeleccionado(null)} />
+            <div className="chest-and-panel row g-4 justify-content-center justify-content-lg-start">
+                <div className="col-12 col-lg-auto d-flex justify-content-center">
+                    <ChestInventory items={itemsDelCofre} onSelectItem={(i) => setValorSeleccionado(i.valor)} onFirstOpen={iniciarMusica} />
+                </div>
+                <div className="col-12 col-lg-auto d-flex justify-content-center">
+                    <ItemPanel key={itemSeleccionado?.valor} item={itemSeleccionado} onClose={() => setValorSeleccionado(null)} />
+                </div>
             </div>
         </Mainlayout>
     );

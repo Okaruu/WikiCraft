@@ -11,12 +11,14 @@ export default function FavoritesPage() {
             {favoritos.length === 0 ? (
                 <Text>Aún no tienes ítems favoritos. Abre un cofre en el inicio y toca el corazón del ítem que quieras agregar.</Text>
             ) : (
-                <div className="fav-grid">
+                <div className="fav-grid row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3">
                     {favoritos.map((f) => (
-                        <div className="fav-card" key={f.valor}>
-                            <img src={f.imagen} alt={f.nombre}/>
-                            <span>{f.nombre}</span>
-                            <FavoriteButton active onClick={() => toggleFavorito(f)} />
+                        <div className="col" key={f.valor}>
+                            <div className="fav-card h-100">
+                                <img src={f.imagen} alt={f.nombre}/>
+                                <span>{f.nombre}</span>
+                                <FavoriteButton active onClick={() => toggleFavorito(f)} />
+                            </div>
                         </div>
                     ))}
                 </div>

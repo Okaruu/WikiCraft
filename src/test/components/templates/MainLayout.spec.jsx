@@ -19,4 +19,10 @@ describe('MainLayout (template)', () => {
     expect(container.querySelector('footer#footer')).toBeTruthy();
     expect(screen.getByRole('img', { name: 'Creeper' })).toBeTruthy();
   });
+
+  it('el contenido usa el contenedor responsivo de Bootstrap', () => {
+    const { container } = renderConProveedores(<MainLayout><p>hola</p></MainLayout>);
+    expect(container.querySelector('#content')).toHaveClass('container-lg');
+    expect(container.querySelector('.layout')).toHaveClass('min-vh-100');
+  });
 });

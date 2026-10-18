@@ -47,10 +47,16 @@
     font: inherit;
 }
 
+/* Botones de edición uno debajo del otro, del ancho del panel */
 .item-edit-actions {
     display: flex;
+    flex-direction: column;
     gap: 0.5rem;
     margin-top: 0.5rem;
+}
+
+.item-edit-actions button {
+    width: 100%;
 }
 
 .item-panel-fav {

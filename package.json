@@ -9,11 +9,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "karma start karma.conf.cjs --single-run",
-    "test:watch": "karma start"
+    "test:watch": "karma start karma.conf.cjs --no-single-run"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "bulma": "^1.0.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-hook-form": "^7.90.0",
@@ -30,6 +29,7 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "babel-loader": "^10.1.1",
+    "babel-plugin-istanbul": "^7.0.0",
     "css-loader": "^7.1.5",
     "eslint": "^10.10.0",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -37,7 +37,6 @@
     "globals": "^17.12.0",
     "jasmine-core": "^7.0.2",
     "karma": "^6.4.4",
-    "karma-babel-preprocessor": "^8.0.2",
     "karma-chrome-launcher": "^3.2.0",
     "karma-coverage": "^2.2.1",
     "karma-jasmine": "^5.1.0",

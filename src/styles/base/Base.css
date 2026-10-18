@@ -28,6 +28,11 @@ p + p {
     padding: 16px;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 body {
     background-image: url('/imagenes/Dirt_background_BE1.webp');
     background-repeat: repeat-y;

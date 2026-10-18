@@ -46,4 +46,16 @@ describe('Home Page', () => {
     console.log('Tiempo de renderizado de Home:', duracion, 'ms');
     expect(duracion).toBeLessThan(200);
   });
+
+  it('usa la grilla de Bootstrap para ordenar el cofre y el panel (diseño responsivo)', () => {
+    const { container } = renderConProveedores(<Home />);
+    const fila = container.querySelector('.chest-and-panel');
+    expect(fila).toHaveClass('row');
+    const columnas = fila.querySelectorAll(':scope > div');
+    expect(columnas.length).toBe(2);
+    columnas.forEach((col) => {
+      expect(col).toHaveClass('col-12'); 
+      expect(col).toHaveClass('col-lg-auto');
+    });
+  });
 });

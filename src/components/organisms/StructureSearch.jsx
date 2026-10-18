@@ -19,10 +19,12 @@ export default function StructureSearch({onSelect}){
     const elegir = (z) => { setTexto(z.nombre); onSelect(z.valor); }
 
     return (
-        <div className="structure-container">
+        <div className="structure-container d-flex flex-column align-items-center gap-2">
             <Label htmlFor="text-input">Ingresa el nombre de la estructura:</Label>
-            <AutocompleteInput value={texto} onChange={setTexto} onPick={elegir}/>
-            <Button className="search-btn" onClick={buscar}>Buscar</Button>
+            <div className="d-flex flex-column flex-sm-row align-items-center gap-3">
+                <AutocompleteInput value={texto} onChange={setTexto} onPick={elegir}/>
+                <Button className="search-btn btn" onClick={buscar}>Buscar</Button>
+            </div>
         </div>
     )
 }
