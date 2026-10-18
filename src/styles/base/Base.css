@@ -1,0 +1,65 @@
+html,
+body {
+    min-height: 100vh;
+    margin: 0 auto;
+    cursor: url("/imagenes/MinecraftDiamondSword.cur"), auto;
+}
+
+h1 {
+    margin: 10px;
+    font-size: 30px;
+    color: #c6c6c6;
+}
+
+h2 {
+    text-align: center;
+    font-size: 26px;
+    margin: 16px;
+    color: #c6c6c6;
+}
+
+p {
+    color: rgb(233, 233, 233);
+    text-align: left;
+    margin: 16px;
+}
+
+p + p {
+    padding: 16px;
+}
+
+body {
+    background-image: url('/imagenes/Dirt_background_BE1.webp');
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    background-position: top center;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 18px;
+}
+
+body.overworld {
+    background-image: url('/imagenes/Dirt_background_BE1.webp');
+}
+
+body.nether {
+    background-image: url('/imagenes/Netherrack_background_BE2.webp');
+}
+
+body.end {
+    background-image: url('/imagenes/End_Stone_background_BE2.webp');
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
