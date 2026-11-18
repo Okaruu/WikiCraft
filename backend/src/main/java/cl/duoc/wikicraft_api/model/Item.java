@@ -12,27 +12,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity 
+@Entity
 @Table(name = "items")
-@AllArgsConstructor 
-@Getter 
-@Setter 
+@Getter
+@Setter
 @NoArgsConstructor
 public class Item {
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 100)
+    private String valor;
+
+    @Column(nullable = false, length = 100)
     private String nombre;
 
-    private double probabilidad;
+    @Column(nullable = false, length = 255)
+    private String imagen;
 
+    @Column(columnDefinition = "TEXT")
     private String informacion;
 
+    @Column(columnDefinition = "TEXT")
     private String atributos;
-
-    //Conexion con recetaIngredientes
-    
 }

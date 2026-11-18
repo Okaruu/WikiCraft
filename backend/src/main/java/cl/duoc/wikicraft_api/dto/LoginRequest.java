@@ -1,5 +1,6 @@
 package cl.duoc.wikicraft_api.dto;
 
-public class LoginRequest {
+import jakarta.validation.constraints.NotBlank;
 
+public record LoginRequest(@NotBlank String correo, @NotBlank String password) {
 }

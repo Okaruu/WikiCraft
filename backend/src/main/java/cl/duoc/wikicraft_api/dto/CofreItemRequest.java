@@ -1,5 +1,12 @@
 package cl.duoc.wikicraft_api.dto;
 
-public class CofreItemRequest {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
+public record CofreItemRequest(
+        @NotNull Long estructuraId,
+        @NotNull Long itemId,
+        @NotBlank @Pattern(regexp = "^\\d{1,3}(\\.\\d+)?%$",
+                message = "Debe tener formato como 60% o 12.5%") String probabilidad) {
 }

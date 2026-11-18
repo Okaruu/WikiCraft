@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cl.duoc.wikicraft_api.dto.CofreItemRequest;
 import cl.duoc.wikicraft_api.dto.CofreItemResponse;
+import cl.duoc.wikicraft_api.dto.ProbabilidadRequest;
 import cl.duoc.wikicraft_api.service.CofreItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

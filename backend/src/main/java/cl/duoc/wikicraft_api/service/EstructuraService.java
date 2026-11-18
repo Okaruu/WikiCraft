@@ -24,7 +24,7 @@ public class EstructuraService {
 
     private final EstructuraRepository repo;
     private final MundoRepository mundoRepo;
-    private final CofreItemRepository cofrerepo;
+    private final CofreItemRepository cofreRepo;
 
     public List<EstructuraResponse> listar(String mundoValor) {
         List<Estructura> lista = (mundoValor == null || mundoValor.isBlank())
@@ -36,6 +36,7 @@ public class EstructuraService {
     public EstructuraResponse obtener(Long id) {
         return EstructuraResponse.from(buscar(id));
     }
+    
 
     public List<ItemDeCofreResponse> cofre(String valor) {
     if (repo.findByValor(valor).isEmpty())
@@ -71,10 +72,11 @@ public class EstructuraService {
 
     @Transactional
     public void eliminar(Long id) {
-        repo.delete(buscar(id));
+        Estructura e = buscar(id);
+        cofreRepo.deleteByEstructuraId(id);
+        repo.delete(e);
         repo.flush();
     }
-
     private Estructura buscar(Long id) {
         return repo.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Estructura no encontrada"));
