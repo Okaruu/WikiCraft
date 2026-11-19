@@ -25,3 +25,4 @@ dist-ssr
 
 # Reporte de cobertura de las pruebas
 coverage
+.env
