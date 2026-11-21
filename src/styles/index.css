@@ -1,6 +1,6 @@
 @import './base/Base.css';
 
-@import './atoms/slot.css';
+@import './molecules/slot.css';
 
 @import './molecules/AccordionItem.css';
 @import './molecules/AutoCompleteInput.css';
