@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Slot from "../atoms/Slot";
+import Slot from "../molecules/Slot";
 
 const TOTAL_SLOTS = 27;
 
