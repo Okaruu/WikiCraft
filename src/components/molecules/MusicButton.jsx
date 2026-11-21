@@ -1,4 +1,5 @@
 import Button from "../atoms/Button";
+import { useMusic } from "../../hooks/useMusic";
 
 export default function MusicButton({ className = "header-login btn btn-sm music-btn" }) {
     const musica = useMusic();

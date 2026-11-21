@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/authContext";
+import { ItemsContext } from "../context/itemsContext";
 
 export function useItemEdits() {
-    const contexto = useContext(AuthContext);
+    const contexto = useContext(ItemsContext);
     if(!contexto) throw new Error("useAuth debe usarse dentro de <AuthProvider>");
     return contexto;
 }

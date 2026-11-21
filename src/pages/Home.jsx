@@ -7,7 +7,7 @@ import StructureSearch from "../components/organisms/StructureSearch";
 import WorldSelectors from "../components/organisms/WorldSelectors";
 import ChestInventory from "../components/organisms/ChestInventory";
 import ItemPanel from "../components/organisms/ItemPanel";
-import { useChestItem } from "../utils/useChestItems";
+import { useChestItems } from "../hooks/useChestItems";
 import { useWorldBackground } from "../hooks/useWorldBackground";
 
 export default function Home(){
@@ -17,7 +17,7 @@ export default function Home(){
     const { iniciar: iniciarMusica } = useMusic();
     const [saltos, setSaltos] = useState(0);
 
-    const itemsDelCofre = useChestItem(zona);
+    const itemsDelCofre = useChestItems(zona);
     useWorldBackground(mundo);
 
     const itemSeleccionado = itemsDelCofre.find((i) => i.valor === valorSeleccionado) ?? null;

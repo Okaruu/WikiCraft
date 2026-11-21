@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { items } from "../data/items";
 import { itemsPorEstructura } from "../data/itemsPorEstructura";
-import { useItemEdits } from "../hooks/useItemEdits";
-import { formatearNombre } from "./formatearNombre";
+import { useItemEdits } from "./useItemEdits";
+import { formatearNombre } from "../utils/formatearNombre";
 
 const IMAGEN_POR_DEFECTO = "/imagenes/placeholder.webp";
 
-export function useChestItem(zona) {
+export function useChestItems(zona) {
     const { ediciones } = useItemEdits();
 
     return useMemo (

@@ -22,7 +22,7 @@ export function FavoritesProvider({ children }){
 
     const guardar = (lista) => {
         setFavoritos(lista);
-        try { localStorage.setItem(clave(email), JSON.stringify(lista)); } catch {}
+        try { localStorage.setItem(clave(email), JSON.stringify(lista)); } catch {/* sin localStorage los favoritos no se guardan */}
     }
 
     const esFavorito = (valor) => favoritos.some((f) => f.valor === valor);

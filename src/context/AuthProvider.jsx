@@ -12,12 +12,12 @@ export function AuthProvider({ children }){
 
     const login = (datos) => {
         setUser(datos);
-        try { localStorage.setItem(KEY, JSON.stringify(datos)); } catch {}
+        try { localStorage.setItem(KEY, JSON.stringify(datos)); } catch {/* sin localStorage la sesión dura solo hasta recargar*/}
     };
 
     const logout = () => {
         setUser(null);
-        try { localStorage.removeItem(KEY); } catch {}
+        try { localStorage.removeItem(KEY); } catch {/* sin localStorage no hay nada q borrar */}
     };
 
     return (

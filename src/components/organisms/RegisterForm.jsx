@@ -6,6 +6,7 @@ import Text from "../atoms/Text";
 import { validateEmail } from "../../utils/emailValidation";
 import { validatePassword } from "../../utils/passwordValidation";
 import { ADMIN_DOMAIN, isAdminEmail } from "../../utils/adminAccess";
+import BackButton from "../molecules/BackButton";
 
 function RegisterForm({onSubmit, onBack}){
     const [email, setEmail] = useState("");

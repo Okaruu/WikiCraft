@@ -7,15 +7,12 @@ function buscar(texto) {
 }
 
 describe('StructureSearch (organismo)', () => {
-  beforeEach(() => {
-    spyOn(window, 'alert');
-  });
 
   it('si el campo está vacío avisa y no busca', () => {
     const onSelect = jasmine.createSpy('onSelect');
     render(<StructureSearch onSelect={onSelect} />);
     fireEvent.click(screen.getByRole('button', { name: 'Buscar' }));
-    expect(window.alert).toHaveBeenCalledWith('Por favor escribe el nombre de una estructura.');
+    expect(screen.getByText('Escribe el nombre de la estructura.')).toBeTruthy();
     expect(onSelect).not.toHaveBeenCalled();
   });
 
@@ -37,7 +34,7 @@ describe('StructureSearch (organismo)', () => {
     const onSelect = jasmine.createSpy('onSelect');
     render(<StructureSearch onSelect={onSelect} />);
     buscar('castillo');
-    expect(window.alert).toHaveBeenCalled();
+    expect(screen.getByText(/No se encontró la estructura/)).toBeTruthy();
     expect(onSelect).not.toHaveBeenCalled();
   });
 });
