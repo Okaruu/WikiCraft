@@ -30,12 +30,8 @@ function RegisterForm({onSubmit, onBack}){
 
     return (
         <form className="login-form" onSubmit={handleSubmit} noValidate>
-            {onBack && (
-                <button type="button" className="login-back" onClick={onBack} aria-label="Volver">
-                    ←
-                </button>
-            )}
-            <h2>Crear cuenta</h2>
+            {onBack && <BackButton onClick={onBack}/>}
+            <Text variant="h2">Crear cuenta</Text>
 
             <FormField id="reg-email" label="Correo" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <FormField id="reg-password" label="Contraseña" type="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />

@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import { MusicContext } from "../context/musicContext";
+import { AuthContext } from "../context/authContext";
 
 export function useMusic() {
-    return useContext(MusicContext);
+    const contexto = useContext(AuthContext);
+    if(!contexto) throw new Error("useAuth debe usarse dentro de <AuthProvider>");
+    return contexto;
 }

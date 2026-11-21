@@ -4,7 +4,7 @@ import AutocompleteInput from '../../../components/molecules/AutocompleteInput';
 
 function Envoltura({ onPick }) {
   const [valor, setValor] = useState('');
-  return <AutocompleteInput value={valor} onChange={setValor} onPick={onPick} />;
+  return <AutocompleteInput opciones={todasLasZonas} id={id} placeholder={placeholder} value={valor} onChange={setValor} onPick={onPick} />;
 }
 
 function escribir(texto) {

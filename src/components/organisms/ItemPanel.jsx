@@ -1,77 +1,54 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import AccordionItem from "../molecules/AccordionItem";
+import Button from "../atoms/Button";
+import Text from "../atoms/Text";
+import AppLink from "../atoms/AppLink";
 import FavoriteButton from "../molecules/FavoriteButton";
+import ItemPanelHeader from "../molecules/ItemPanelHeader";
+import ItemDetails from "./ItemDetails";
+import ItemEditForm from "./ItemEditForm";
 import { useAuth } from "../../hooks/useAuth";
 import { useFavorites } from "../../hooks/useFavorites";
 import { useItemEdits } from "../../hooks/useItemEdits";
 
-export default function ItemPanel({ item, onClose }){
+export default function ItemPanel({ item, onClose }) {
     const { isLoggedIn, isAdmin } = useAuth();
     const { updateItem, resetItem } = useItemEdits();
+    const { esFavorito, toggleFavorito } = useFavorites();
     const [editando, setEditando] = useState(false);
-    const [borrador, setBorrador] = useState({informacion: "", atributos: ""});
-    const { esFavorito, toggleFavorito} = useFavorites();
     const [aviso, setAviso] = useState(false);
 
-    if(!item) return null;
-
-    const empezarEdicion = () => {
-        setBorrador({ informacion: item.informacion, atributos: item.atributos });
-        setEditando(true);
-    };
-
-const guardar = () => { updateItem(item.valor, borrador); setEditando(false); };
-
+    if (!item) return null;
 
     const alternarFavorito = () => {
-        if(!isLoggedIn) {setAviso(true); return;}
+        if (!isLoggedIn) { setAviso(true); return; }
         toggleFavorito(item);
-    }
+    };
+    const guardar = (borrador) => { updateItem(item.valor, borrador); setEditando(false); };
+    const restaurar = () => { resetItem(item.valor); setEditando(false); };
 
-    return(
+    return (
         <div className="item-panel">
             <FavoriteButton
                 className="fav-btn item-panel-fav"
                 active={isLoggedIn && esFavorito(item.valor)}
                 onClick={alternarFavorito}
             />
+            <Button className="item-panel-close" onClick={onClose}>X</Button>
+            <ItemPanelHeader item={item} />
 
-            <button className="item-panel-close" onClick={onClose}>X</button>
-            <div className="item-panel-header">
-                <img src={item.imagen} alt={item.nombre}/>
-                <span>{item.nombre}</span>
-            </div>
-            
             {aviso && !isLoggedIn && (
-                <p className="item-panel-aviso">
-                    Inicia sesión para guardar favoritos. <Link to="/login">Iniciar sesión</Link> 
-                </p>
+                <Text className="item-panel-aviso">
+                    Inicia sesión para guardar favoritos. <AppLink to="/login">Iniciar sesión</AppLink>
+                </Text>
             )}
 
-            {isAdmin && !editando && (
-                <button type="button" onClick={empezarEdicion}>Editar</button>
-            )}
+            {isAdmin && !editando && <Button onClick={() => setEditando(true)}>Editar</Button>}
 
             {editando ? (
-                <div className="item-edit">
-                    <label htmlFor="edit-info">Información</label>
-                    <textarea id="edit-info" rows={5} value={borrador.informacion} onChange={(e) => setBorrador((b) => ({ ...b, informacion: e.target.value}))} />
-                    <label htmlFor="edit-attr">Atributos</label>
-                    <textarea id="edit-attr" rows={5} value={borrador.atributos} onChange={(e) => setBorrador((b) => ({...b, atributos: e.target.value}))} />
-                    <div className="item-edit-actions">
-                        <button type="button" onClick={guardar}>Guardar</button>
-                        <button type="button" onClick={() => setEditando(false)}>Cancelar</button>
-                        <button type="button" onClick={() => { resetItem(item.valor); setEditando(false); }}>Restaurar original</button>
-                    </div>
-                </div>
-            ): (
-                <div className="accordion">
-                    <AccordionItem titulo="Información"><p>{item.informacion || "Sin información disponible."}</p></AccordionItem>
-                    <AccordionItem titulo="Probabilidad"><p>{item.probabilidad ? `Probabilidad de aparición: ${item.probabilidad}` : "Sin datos de probabilidad."}</p></AccordionItem>
-                    <AccordionItem titulo="Atributos"><p>{item.atributos || "Sin atributos registrados."}</p></AccordionItem>
-                </div>
+                <ItemEditForm item={item} onSave={guardar} onCancel={() => setEditando(false)} onReset={restaurar} />
+            ) : (
+                <ItemDetails item={item} />
             )}
         </div>
-    )
+    );
 }

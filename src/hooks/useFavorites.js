@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import { FavoritesContext } from "../context/favoritesContext";
+import { AuthContext } from "../context/authContext";
 
 export function useFavorites(){
-    return useContext(FavoritesContext);
+    const contexto = useContext(AuthContext);
+    if(!contexto) throw new Error("useAuth debe usarse dentro de <AuthProvider>");
+    return contexto;
 }

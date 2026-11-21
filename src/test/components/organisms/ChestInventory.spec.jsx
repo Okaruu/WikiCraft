@@ -16,7 +16,7 @@ describe('ChestInventory (organismo)', () => {
   it('al hacer click se abre, muestra 27 casillas y llama a onFirstOpen', () => {
     const onFirstOpen = jasmine.createSpy('onFirstOpen');
     const { container } = render(
-      <ChestInventory items={items} onSelectItem={() => {}} onFirstOpen={onFirstOpen} />
+      <ChestInventory items={items} onSelectItem={() => {}} onOpen={onFirstOpen} />
     );
     fireEvent.click(screen.getByRole('img', { name: 'cofre' }));
     expect(screen.getByRole('img', { name: 'cofre' }).getAttribute('src')).toBe('/imagenes/chest_open.webp');

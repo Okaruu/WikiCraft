@@ -3,13 +3,13 @@ import AdminPage from '../../pages/AdminPage';
 
 describe('AdminPage', () => {
   it('renderiza el título del panel de administrador', () => {
-    render(<AdminPage />);
+    renderConProveedores(<AdminPage />);
     expect(screen.getByText('Panel de administrador')).toBeTruthy();
   });
 
-  it('el título es un encabezado de nivel 1', () => {
+  it('el título es un encabezado de nivel 2', () => {
     render(<AdminPage />);
-    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Panel de administrador');
+    expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('Panel de administrador');
   });
 
   it('tiene un solo encabezado', () => {

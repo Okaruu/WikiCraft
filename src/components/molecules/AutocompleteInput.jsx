@@ -2,14 +2,13 @@ import { useState } from "react";
 import Input from "../atoms/Input";
 import { useDebounce } from "../../hooks/useDebounce";
 import { normalizar } from "../../utils/normalizar";
-import { todasLasZonas } from "../../data/zonas";
 
-export default function AutocompleteInput({ value, onChange, onPick }){
+export default function AutocompleteInput({ id, placeholder, opciones, value, onChange, onPick }){
     const [open, setOpen] = useState(false);
     const [active, setActive] = useState(-1);
     const texto = useDebounce(value.trim(), 150);
     const sugerencias = texto
-        ? todasLasZonas.filter((z) => normalizar(z.nombre).includes(normalizar(texto))) : [];
+        ? opciones.filter((z) => normalizar(z.nombre).includes(normalizar(texto))) : [];
 
     const elegir = (z) => { onPick(z); setOpen(false); setActive(-1);};
 
@@ -24,7 +23,7 @@ export default function AutocompleteInput({ value, onChange, onPick }){
     return (
         <div className="autocomplete-wrapper">
             <Input
-                id="text-input" className="structure-input" placeholder="Ej: Aldea"
+                id={id} className="structure-input" placeholder={placeholder}
                 maxLength={30} autoComplete="off" value={value}
                 onChange={(e) => { onChange(e.target.value); setOpen(true); setActive(-1); }}
                 onKeyDown={onKeyDown} onBlur={() => setOpen(false)}
