@@ -2,7 +2,7 @@ import { useState } from "react";
 import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
 import { Link } from "react-router-dom"
-import { Text } from "../atoms/Text";
+import Text from "../atoms/Text";
 import { validateEmail } from "../../utils/emailValidation";
 import { ADMIN_DOMAIN, validateAdminEmail, isValidAdminCode, } from "../../utils/adminAccess";
 import { validatePassword } from "../../utils/passwordValidation";

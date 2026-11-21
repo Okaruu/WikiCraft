@@ -3,7 +3,7 @@ import { items } from "../data/items";
 import { itemsPorEstructura } from "../data/itemsPorEstructura";
 import { encontrarMundoDeZona } from "../utils/encontrarMundoDeZona"
 import { useMusic } from "../hooks/useMusic";
-import { Text } from "../components/atoms/Text";
+import Text from "../components/atoms/Text";
 import { useItemEdits } from "../hooks/useItemEdits";
 import Mainlayout from "../components/templates/MainLayout";
 import StructureSearch from "../components/organisms/StructureSearch";

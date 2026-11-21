@@ -1,4 +1,4 @@
-import { Text } from "../atoms/Text";
+import Text from "../atoms/Text";
 
 export default function ContactSection(){
     return (

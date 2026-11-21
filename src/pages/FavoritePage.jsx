@@ -1,5 +1,5 @@
 import Mainlayout from "../components/templates/MainLayout";
-import { Text } from "../components/atoms/Text";
+import Text from "../components/atoms/Text";
 import FavoriteButton from "../components/molecules/FavoriteButton";
 import { useFavorites } from "../hooks/useFavorites";
 

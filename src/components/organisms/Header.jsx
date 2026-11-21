@@ -1,4 +1,4 @@
-import { Text } from "../atoms/Text";
+import Text from "../atoms/Text";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import MusicButton from "../molecules/MusicButton";
