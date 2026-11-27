@@ -1,4 +1,5 @@
-import { Text } from "../atoms/Text";
+import AppLink from "../atoms/AppLink";
+import Text from "../atoms/Text";
 
 export default function ContactSection(){
     return (
@@ -6,8 +7,8 @@ export default function ContactSection(){
             <div className="contacto-content">
                 <Text variant="h2" className="text-contact">Contacto</Text>
                 <div className="contactos">
-                    <a href="https://workspace.google.com/intl/es-419/gmail/">Correo</a>
-                    <a href="https://www.instagram.com/wikicraft.cl/">Instagram</a>
+                    <AppLink href="https://workspace.google.com/intl/es-419/gmail/">Correo</AppLink>
+                    <AppLink href="https://www.instagram.com/wikicraft.cl/">Instagram</AppLink>
                 </div>
             </div>
         </section>

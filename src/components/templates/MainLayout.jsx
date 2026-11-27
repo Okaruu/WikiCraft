@@ -2,7 +2,7 @@ import Header from "../organisms/Header";
 import Footer from "../organisms/Footer";
 import CreeperInfo from "../organisms/CreeperInfo";
 
-export default function Mainlayout({children}){
+export default function MainLayout({children}){
     return(
         <div className="layout d-flex flex-column min-vh-100">
             <Header />

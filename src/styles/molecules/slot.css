@@ -6,6 +6,7 @@
     border-color: #373737 #ffffff55 #ffffff55 #373737;
     box-sizing: border-box;
     position: relative;
+    padding: 0;
 }
 
 .slot:has(.item-icon):hover {

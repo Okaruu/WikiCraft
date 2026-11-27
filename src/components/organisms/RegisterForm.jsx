@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
-import { Text } from "../atoms/Text";
+import Text from "../atoms/Text";
 import { validateEmail } from "../../utils/emailValidation";
 import { validatePassword } from "../../utils/passwordValidation";
 import { ADMIN_DOMAIN, isAdminEmail } from "../../utils/adminAccess";
+import BackButton from "../molecules/BackButton";
 
 function RegisterForm({onSubmit, onBack}){
     const [email, setEmail] = useState("");
@@ -30,12 +31,8 @@ function RegisterForm({onSubmit, onBack}){
 
     return (
         <form className="login-form" onSubmit={handleSubmit} noValidate>
-            {onBack && (
-                <button type="button" className="login-back" onClick={onBack} aria-label="Volver">
-                    ←
-                </button>
-            )}
-            <h2>Crear cuenta</h2>
+            {onBack && <BackButton onClick={onBack}/>}
+            <Text variant="h2">Crear cuenta</Text>
 
             <FormField id="reg-email" label="Correo" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <FormField id="reg-password" label="Contraseña" type="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />

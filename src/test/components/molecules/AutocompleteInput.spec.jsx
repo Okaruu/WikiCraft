@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import AutocompleteInput from '../../../components/molecules/AutocompleteInput';
+import { todasLasZonas } from '../../../data/zonas';
 
 function Envoltura({ onPick }) {
   const [valor, setValor] = useState('');
-  return <AutocompleteInput value={valor} onChange={setValor} onPick={onPick} />;
+  return <AutocompleteInput opciones={todasLasZonas} id={"text-input"} placeholder={"Ej: Aldea"} value={valor} onChange={setValor} onPick={onPick} />;
 }
 
 function escribir(texto) {

@@ -29,6 +29,11 @@
     max-width: 90vw;
 }
 
+.creeper-text p{
+    margin:0;
+    font-size:inherit;
+}
+
 .creeper-text.visible {
     display: block;
 }

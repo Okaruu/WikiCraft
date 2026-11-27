@@ -12,7 +12,7 @@ export function ItemsProvider({ children }) {
 
     const guardar = (nuevo) => {
         setEdiciones(nuevo);
-        try { localStorage.setItem(KEY, JSON.stringify(nuevo)); } catch {}
+        try { localStorage.setItem(KEY, JSON.stringify(nuevo)); } catch { /* sin localStorage las ediciones no se guardan */}
     };
 
     const updateItem = (valor, {informacion, atributos}) =>

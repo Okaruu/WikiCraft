@@ -2,5 +2,7 @@ import { useContext } from "react";
 import { ItemsContext } from "../context/itemsContext";
 
 export function useItemEdits() {
-    return useContext(ItemsContext);
+    const contexto = useContext(ItemsContext);
+    if(!contexto) throw new Error("useAuth debe usarse dentro de <AuthProvider>");
+    return contexto;
 }

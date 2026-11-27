@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Slot from '../../../components/atoms/Slot';
+import Slot from '../../../components/molecules/Slot';
 
 const pan = { valor: 'pan', nombre: 'Pan', imagen: '/imagenes/Pan.webp' };
 

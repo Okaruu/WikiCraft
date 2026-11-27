@@ -29,7 +29,7 @@ export function MusicProvider({ src = "/audios/C418 - Sweden.mp3", volume = 0.2,
     const alternar = () => {
         const nueva = !silenciada;
         setSilenciada(nueva);
-        try { localStorage.setItem(KEY, String(nueva)); } catch { }
+        try { localStorage.setItem(KEY, String(nueva)); } catch {/* sin localStorage la app no recuerda si la música estaba silenciada */}
         if (nueva) audioRef.current?.pause();
         else obtenerAudio().play().catch(() => {});
     };

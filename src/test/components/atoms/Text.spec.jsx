@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Text } from '../../../components/atoms/Text';
+import Text from '../../../components/atoms/Text';
 
 describe('Text (átomo)', () => {
   it('por defecto renderiza un párrafo <p>', () => {

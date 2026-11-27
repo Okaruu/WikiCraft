@@ -1,19 +1,20 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import AdminPage from '../../pages/AdminPage';
+import { renderConProveedores } from "../utils/renderConProveedores";
 
 describe('AdminPage', () => {
   it('renderiza el título del panel de administrador', () => {
-    render(<AdminPage />);
+    renderConProveedores(<AdminPage />);
     expect(screen.getByText('Panel de administrador')).toBeTruthy();
   });
 
-  it('el título es un encabezado de nivel 1', () => {
-    render(<AdminPage />);
-    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Panel de administrador');
+  it('el título es un encabezado de nivel 2', () => {
+    renderConProveedores(<AdminPage />);
+    expect(screen.getByRole('heading', { level: 2, name: 'Panel de administrador'})).toBeTruthy();
   });
 
-  it('tiene un solo encabezado', () => {
-    render(<AdminPage />);
-    expect(screen.getAllByRole('heading').length).toBe(1);
+  it('tiene un solo un h1', () => {
+    renderConProveedores(<AdminPage />);
+    expect(screen.getAllByRole('heading', {level: 1}).length).toBe(1);
   });
 });

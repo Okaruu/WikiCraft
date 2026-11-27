@@ -2,10 +2,11 @@ import { useState } from "react";
 import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
 import { Link } from "react-router-dom"
-import { Text } from "../atoms/Text";
+import Text from "../atoms/Text";
 import { validateEmail } from "../../utils/emailValidation";
 import { ADMIN_DOMAIN, validateAdminEmail, isValidAdminCode, } from "../../utils/adminAccess";
 import { validatePassword } from "../../utils/passwordValidation";
+import BackButton from "../molecules/BackButton";
 
 function LoginForm({ onSubmit, onBack }) {
     const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ function LoginForm({ onSubmit, onBack }) {
         } else if (!password) {
             setError("Ingresa tu contraseña");
             return;
-        };
+        }
         setError("");
         const errorCuenta= onSubmit({ email: email.trim().toLowerCase(), password, role: isAdmin ? "admin" : "user"})
         if (errorCuenta) setError(errorCuenta);
@@ -40,13 +41,9 @@ function LoginForm({ onSubmit, onBack }) {
 
     return (
         <form className="login-form" onSubmit={handleSubmit} noValidate>
-            {onBack && (
-                <button type="button" className="login-back" onClick={onBack} aria-label="Volver">
-                    ←
-                </button>
-            )}
+            {onBack && <BackButton onClick={onBack}/>}
 
-            <h2>{isAdmin ? "Acceso administrador" : "Iniciar sesión"}</h2>
+            <Text variant="h2">{isAdmin ? "Acceso administrador" : "Iniciar sesión"}</Text>
 
             <FormField
                 id="email"
@@ -75,9 +72,9 @@ function LoginForm({ onSubmit, onBack }) {
                 />
             )}
 
-            <button type="button" className="login-admin-link" onClick={handleToggleAdmin}>
+            <Button className="login-admin-link" onClick={handleToggleAdmin}>
                 {isAdmin ? "Iniciar como usuario" : "Iniciar como administrador"}
-            </button>
+            </Button>
 
             {error && <Text className="login-error">{error}</Text>}
 
