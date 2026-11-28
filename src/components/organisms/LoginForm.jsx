@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import FormField from "../molecules/FormField";
-import Button from "../atoms/Button";
-import { Link } from "react-router-dom"
-import Text from "../atoms/Text";
-import { validateEmail } from "../../utils/emailValidation";
-import { ADMIN_DOMAIN, validateAdminEmail, isValidAdminCode, } from "../../utils/adminAccess";
-import { validatePassword } from "../../utils/passwordValidation";
 import BackButton from "../molecules/BackButton";
+import Button from "../atoms/Button";
+import Text from "../atoms/Text";
+
+import { validateEmail } from "../../utils/emailValidation";
+import { validatePassword } from "../../utils/passwordValidation";
+import { ADMIN_DOMAIN, validateAdminEmail, isValidAdminCode } from "../../utils/adminAccess";
 
 function LoginForm({ onSubmit, onBack }) {
     const [email, setEmail] = useState("");
@@ -21,29 +23,48 @@ function LoginForm({ onSubmit, onBack }) {
         setError("");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const errorCorreo = isAdmin ? validateAdminEmail(email) : validateEmail(email);
-        if (errorCorreo) { setError(errorCorreo); return; }
+        if (errorCorreo) {
+            setError(errorCorreo);
+            return;
+        }
+
         if (isAdmin) {
             const errorPassword = validatePassword(password);
-            if( errorPassword) { setError(errorPassword); return;}
-            if (!isValidAdminCode(code)) {setError("Código de acceso incorrecto"); return;}
+            if (errorPassword) {
+                setError(errorPassword);
+                return;
+            }
+            if (!isValidAdminCode(code)) {
+                setError("Código de acceso incorrecto");
+                return;
+            }
         } else if (!password) {
             setError("Ingresa tu contraseña");
             return;
         }
+
         setError("");
-        const errorCuenta= onSubmit({ email: email.trim().toLowerCase(), password, role: isAdmin ? "admin" : "user"})
+
+        const errorCuenta = await onSubmit({
+            email: email.trim().toLowerCase(),
+            password,
+            role: isAdmin ? "admin" : "user",
+        });
+
         if (errorCuenta) setError(errorCuenta);
     };
 
     return (
         <form className="login-form" onSubmit={handleSubmit} noValidate>
-            {onBack && <BackButton onClick={onBack}/>}
+            {onBack && <BackButton onClick={onBack} />}
 
-            <Text variant="h2">{isAdmin ? "Acceso administrador" : "Iniciar sesión"}</Text>
+            <Text variant="h2">
+                {isAdmin ? "Acceso administrador" : "Iniciar sesión"}
+            </Text>
 
             <FormField
                 id="email"
@@ -53,6 +74,7 @@ function LoginForm({ onSubmit, onBack }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
+
             <FormField
                 id="password"
                 label="Contraseña"
@@ -78,10 +100,14 @@ function LoginForm({ onSubmit, onBack }) {
 
             {error && <Text className="login-error">{error}</Text>}
 
-            <Button type="submit" className="btn">Entrar</Button>
+            <Button type="submit" className="btn">
+                Entrar
+            </Button>
 
             {!isAdmin && (
-                <Link to="/registro" className="login-alt-link">¿No tienes cuenta? Regístrate</Link>
+                <Link to="/registro" className="login-alt-link">
+                    ¿No tienes cuenta? Regístrate
+                </Link>
             )}
         </form>
     );

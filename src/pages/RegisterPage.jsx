@@ -2,16 +2,18 @@ import AuthTemplate from "../components/templates/AuthTemplate";
 import RegisterForm from "../components/organisms/RegisterForm";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { registrarCuenta } from "../utils/cuentas";
+import { registrarCuenta, iniciarSesion } from "../utils/cuentas";
 
 function RegisterPage() {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    const handleRegister = ({ email, password }) => {
-        const error = registrarCuenta({email,password});
+    const handleRegister = async ({ email, password }) => {
+        const errorRegistro = await registrarCuenta({ email, password });
+        if (errorRegistro) return errorRegistro;
+        const { error, sesion } = await iniciarSesion({ email, password });
         if (error) return error;
-        login({ email: email.trim().toLowerCase(), role: "user" });
+        login(sesion);
         navigate("/");
         return "";
     };
