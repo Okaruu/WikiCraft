@@ -1,28 +1,36 @@
-const KEY = "wikicraft:cuentas";
+import { api } from "./api";
 
-function leerCuentas(){
-    try { return JSON.parse(localStorage.getItem(KEY)) ?? []; } catch { return []; }
+function mensajeError(r) {
+    return r.data?.mensaje || "Ocurrió un error. Intenta de nuevo.";
 }
 
-function guardarCuentas(cuentas){
-    try { localStorage.setItem(KEY, JSON. stringify(cuentas)); return true; } catch {return false;}
+function leerToken(token) {
+    try {
+        const base64 = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+        const p = JSON.parse(atob(base64));
+        return { id: p.sub, role: String(p.role).toLowerCase() };
+    } catch {
+        return { id: null, role: "user" };
+    }
 }
 
-export function registrarCuenta({email, password}){
+// Devuelve "" si salió bien, o el mensaje de error
+export async function registrarCuenta({ email, password }) {
+    const r = await api("/api/auth/registro", {
+        method: "POST",
+        body: { correo: email.trim().toLowerCase(), password },
+    });
+    return r.ok ? "" : mensajeError(r);
+}
+
+// Devuelve { error } o { sesion: { email, role, id, token } }
+export async function iniciarSesion({ email, password }) {
     const correo = email.trim().toLowerCase();
-    const cuentas = leerCuentas();
-
-    if(cuentas.some((c) => c.email === correo)) return "Ya existe una cuenta con ese correo.";
-    if (!guardarCuentas([...cuentas, { email: correo, password}]))
-        return "No se pudo guardar la cuenta en este navegador.";
-    return "";
-}
-
-export function verificarCuenta({email,password}){
-    const correo = email.trim().toLowerCase();
-    const cuenta = leerCuentas().find((c) => c.email ===correo);
-
-    if(!cuenta) return "No existe una cuenta con ese correo. Cree una cuenta.";
-    if(cuenta.password !== password) return "Contraseña incorrecta.";
-    return "";
+    const r = await api("/api/auth/login", {
+        method: "POST",
+        body: { correo, password },
+    });
+    if (!r.ok || !r.data?.token) return { error: mensajeError(r) };
+    const { id, role } = leerToken(r.data.token);
+    return { sesion: { email: correo, role, id, token: r.data.token } };
 }
